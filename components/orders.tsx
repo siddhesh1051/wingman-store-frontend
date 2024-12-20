@@ -179,7 +179,7 @@ export function Orders() {
                       <TableCell>
                         <div className="flex flex-col">
                           <span className="font-medium">
-                            {24 + index} Apr '2024
+                            {24 + index} Apr 2024
                           </span>
                           <span className="text-sm text-muted-foreground">
                             10:24 AM

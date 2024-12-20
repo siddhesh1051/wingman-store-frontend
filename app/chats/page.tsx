@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 "use client";
 import React, { useState } from "react";
 import { DashboardLayout } from "@/components/layout";
@@ -38,7 +36,7 @@ export default function ChatsPage() {
   ]);
   const [inputText, setInputText] = useState("");
 
-  const handleSend = (e: any) => {
+  const handleSend = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputText.trim()) return;
 

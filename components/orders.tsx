@@ -1,5 +1,3 @@
-//@ts-nocheck
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -67,8 +65,8 @@ export function Orders() {
     }
 
     return [...products].sort((a, b) => {
-      let aValue: any = a[sortConfig.key as keyof Product];
-      let bValue: any = b[sortConfig.key as keyof Product];
+      let aValue = a[sortConfig.key as keyof Product];
+      let bValue = b[sortConfig.key as keyof Product];
 
       // Handle special cases for derived values
       if (sortConfig.key === "commission") {

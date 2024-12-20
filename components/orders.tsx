@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUp, ArrowUpRight } from "lucide-react";
 
 import {
   Table,
@@ -21,11 +21,19 @@ interface Product {
   image: string;
 }
 
+type SortConfig = {
+  key: string;
+  direction: "asc" | "desc" | null;
+};
+
 export function Orders() {
   const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortConfig, setSortConfig] = useState<SortConfig>({
+    key: "",
+    direction: null,
+  });
   const itemsPerPage = 4;
-  const totalPages = Math.ceil(products.length / itemsPerPage);
 
   const fetchProducts = async () => {
     const res = await fetch("https://fakestoreapi.com/products");
@@ -36,6 +44,45 @@ export function Orders() {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  const handleSort = (key: string) => {
+    let direction: "asc" | "desc" | null = "asc";
+
+    if (sortConfig.key === key) {
+      if (sortConfig.direction === "asc") {
+        direction = "desc";
+      } else if (sortConfig.direction === "desc") {
+        direction = null;
+      }
+    }
+
+    setSortConfig({ key, direction });
+  };
+
+  const getSortedProducts = () => {
+    if (!sortConfig.key || !sortConfig.direction) {
+      return products;
+    }
+
+    return [...products].sort((a, b) => {
+      let aValue: any = a[sortConfig.key as keyof Product];
+      let bValue: any = b[sortConfig.key as keyof Product];
+
+      // Handle special cases for derived values
+      if (sortConfig.key === "commission") {
+        aValue = a.price * 0.1;
+        bValue = b.price * 0.1;
+      }
+
+      if (sortConfig.direction === "asc") {
+        return aValue > bValue ? 1 : -1;
+      }
+      return aValue < bValue ? 1 : -1;
+    });
+  };
+
+  const sortedProducts = getSortedProducts();
+  const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -49,10 +96,21 @@ export function Orders() {
     }
   };
 
-  const paginatedProducts = products.slice(
+  const paginatedProducts = sortedProducts.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  const SortIndicator = ({ columnKey }: { columnKey: string }) => {
+    if (sortConfig.key !== columnKey) {
+      return <ArrowDown className="ml-1 h-4 w-4 inline-block opacity-30" />;
+    }
+    return sortConfig.direction === "asc" ? (
+      <ArrowUp className="ml-1 h-4 w-4 inline-block" />
+    ) : (
+      <ArrowDown className="ml-1 h-4 w-4 inline-block" />
+    );
+  };
 
   return (
     <Card className="border-none shadow-none">
@@ -70,20 +128,35 @@ export function Orders() {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-[#F9FAFB] py-2">
-                    <TableHead className="text-xs font-medium text-muted-foreground">
+                    <TableHead
+                      className="text-xs font-medium text-muted-foreground cursor-pointer"
+                      onClick={() => handleSort("title")}
+                    >
                       Product
+                      <SortIndicator columnKey="title" />
                     </TableHead>
-                    <TableHead className="text-xs font-medium text-muted-foreground">
+                    <TableHead
+                      className="text-xs font-medium text-muted-foreground cursor-pointer"
+                      onClick={() => handleSort("date")}
+                    >
                       Date
                     </TableHead>
                     <TableHead className="text-xs font-medium text-muted-foreground">
                       Time spent
                     </TableHead>
-                    <TableHead className="text-xs font-medium text-muted-foreground">
+                    <TableHead
+                      className="text-xs font-medium text-muted-foreground cursor-pointer"
+                      onClick={() => handleSort("price")}
+                    >
                       Order Value
+                      <SortIndicator columnKey="price" />
                     </TableHead>
-                    <TableHead className="text-xs font-medium text-muted-foreground">
+                    <TableHead
+                      className="text-xs font-medium text-muted-foreground cursor-pointer"
+                      onClick={() => handleSort("commission")}
+                    >
                       Commission
+                      <SortIndicator columnKey="commission" />
                     </TableHead>
                     <TableHead className="text-right text-xs font-medium text-muted-foreground"></TableHead>
                   </TableRow>
@@ -117,7 +190,7 @@ export function Orders() {
                       <TableCell className="font-medium">
                         ${product.price.toFixed(2)}
                       </TableCell>
-                      <TableCell className=" font-bold">
+                      <TableCell className="font-bold">
                         ${(product.price * 0.1).toFixed(2)}
                       </TableCell>
                       <TableCell className="text-right">

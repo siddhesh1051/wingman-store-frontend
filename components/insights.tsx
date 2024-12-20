@@ -29,14 +29,6 @@ const weeklyData = [
   { day: "Fri", incoming: 50, answered: 43, experts: 8 },
   { day: "Sat", incoming: 55, answered: 49, experts: 9 },
   { day: "Sun", incoming: 60, answered: 53, experts: 10 },
-  // Third week
-  { day: "Mon", incoming: 34, answered: 28, experts: 6 },
-  { day: "Tue", incoming: 38, answered: 32, experts: 7 },
-  { day: "Wed", incoming: 42, answered: 36, experts: 8 },
-  { day: "Thu", incoming: 48, answered: 40, experts: 7 },
-  { day: "Fri", incoming: 45, answered: 38, experts: 6 },
-  { day: "Sat", incoming: 50, answered: 44, experts: 9 },
-  { day: "Sun", incoming: 55, answered: 48, experts: 10 },
 ];
 
 const comparisonData = [

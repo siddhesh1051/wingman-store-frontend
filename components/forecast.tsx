@@ -1,17 +1,20 @@
 import React from "react";
+import Image from "next/image";
+import ChatIcon from "@/assets/ChatIcon.svg";
+import ForeCastBg from "@/assets/ForecastBg.svg";
 
 export default function Forecast() {
   return (
-    <div className="col-span-2 bg-[#15B79E] p-6 rounded-3xl text-white">
+    <div className="col-span-2 relative overflow-hidden bg-[#15B79E] bg-gradient-to-br from-[#15B79E] to-[#086f61] p-6 rounded-3xl text-white">
       <div className="flex items-center gap-2 mb-6">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-          <path d="M8.3125 0.875C6.24119 0.877275 4.25538 1.70111 2.79074 3.16574C1.32611 4.63038 0.502275 6.61619 0.5 8.6875V15.2758C0.500413 15.6003 0.629526 15.9115 0.859022 16.141C1.08852 16.3705 1.39966 16.4996 1.72422 16.5H8.3125C10.3845 16.5 12.3716 15.6769 13.8368 14.2118C15.3019 12.7466 16.125 10.7595 16.125 8.6875C16.125 6.6155 15.3019 4.62836 13.8368 3.16323C12.3716 1.6981 10.3845 0.875 8.3125 0.875Z" />
-        </svg>
-        <p className="text-sm uppercase tracking-wider">FORECASTS</p>
+        <Image src={ChatIcon} alt="icon" width={12} height={12} />
+        <p className="text-sm text-[#CCFBEF] uppercase tracking-wider">
+          FORECASTS
+        </p>
       </div>
       <div className="space-y-8">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-6">
             <span className="text-5xl font-normal">+15%</span>
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
               <path
@@ -20,13 +23,13 @@ export default function Forecast() {
               />
             </svg>
           </div>
-          <p className="text-sm opacity-80 mt-2 pt-4 text-white">
+          <p className="text-sm  mt-2 pt-4 text-white">
             forecasted increase in your sales closed by the end of the current
             month
           </p>
         </div>
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-6">
             <span className="text-5xl font-normal">+20%</span>
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
               <path
@@ -35,10 +38,13 @@ export default function Forecast() {
               />
             </svg>
           </div>
-          <p className=" text-white text-sm opacity-80 mt-2 pt-4">
+          <p className="text-white text-sm mt-2 pt-4">
             forecasted increase in consultations by the end of the current month
           </p>
         </div>
+      </div>
+      <div className="absolute top-0 right-0">
+        <Image src={ForeCastBg} alt="bg" />
       </div>
     </div>
   );

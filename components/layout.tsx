@@ -6,9 +6,12 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Logo from "@/assets/Logo.svg";
-import HouseIcon from "@/assets/HouseGreen.svg";
+import HouseIcon from "@/assets/HouseIcon.svg";
+import HouseIconActive from "@/assets/HouseIconActive.svg";
 import ChatIcon from "@/assets/ChatIcon.svg";
+import ChatIconActive from "@/assets/ChatIconActive.svg";
 import SalesIcon from "@/assets/UsersGroupIcon.svg";
+import SalesIconActive from "@/assets/UsersGroupIconActive.svg";
 import SettingsIcon from "@/assets/SettingsIcon.svg";
 import ChatTextIcon from "@/assets/ChatTeardropText.svg";
 import PieChartIcon from "@/assets/ChartPieSlice.svg";
@@ -17,17 +20,20 @@ import TagIcon from "@/assets/Tag.svg";
 const sidebarLinks = [
   {
     title: "Home",
-    icon: HouseIcon,
+    icon: HouseIconActive,
+    activeIcon: HouseIcon,
     href: "/",
   },
   {
     title: "Chats",
     icon: ChatIcon,
+    activeIcon: ChatIconActive,
     href: "/chats",
   },
   {
     title: "Sales",
     icon: SalesIcon,
+    activeIcon: SalesIconActive,
     href: "/sales",
   },
 ];
@@ -49,25 +55,32 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             <Image src={Logo} alt="logo" width={33} height={33} />
           </Link>
         </div>
-        <div className="border-t border-t-white my-8 px-[13.4px]" />
+        <div className="border-t border-t-[#0d4741] my-8 px-[13.4px]" />
         <nav className="flex-1 space-y-6  flex flex-col justify-start items-center">
           {sidebarLinks.map((link) => (
             <button
               key={link.href}
               className={cn(
-                "w-full justify-center text-white p-2 hover:bg-white/10 rounded-lg duration-300",
+                "w-full justify-center text-white p-2 rounded-lg duration-300",
                 pathname === link.href && "bg-white"
               )}
             >
               <Link href={link.href}>
-                <Image src={link.icon} alt="icon" width={20} height={20} />
+                {
+                  <Image
+                    src={pathname === link.href ? link.activeIcon : link.icon}
+                    alt="icon"
+                    width={20}
+                    height={20}
+                  />
+                }
                 <span className="sr-only">{link.title}</span>
               </Link>
             </button>
           ))}
         </nav>
         <div className="mt-auto">
-          <button className="w-full justify-center text-white hover:bg-white/10">
+          <button className="w-full justify-center text-white ">
             <Link href="/settings">
               <Image src={SettingsIcon} alt="icon" width={20} height={20} />
               <span className="sr-only">Settings</span>

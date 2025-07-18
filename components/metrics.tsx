@@ -65,7 +65,7 @@ const metrics: Metric[] = [
 
 export function Metrics() {
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 py-3">
+    <div className="grid gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-3">
       {metrics.map((metric) => (
         <Card
           key={metric.title}
@@ -85,7 +85,7 @@ export function Metrics() {
             </CardTitle>
           </CardHeader>
           <CardContent className="gap-2 flex flex-col">
-            <div className="text-3xl font-medium">{metric.value}</div>
+            <div className="text-2xl md:text-3xl font-medium">{metric.value}</div>
             <p
               className={cn(
                 "flex items-center text-xs",

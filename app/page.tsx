@@ -14,11 +14,11 @@ import {
 export default function DashboardPage() {
   return (
     <DashboardLayout>
-      <div className="flex-1 space-y-4 p-8 mt-9 pt-6 rounded-xl mx-6 shadow-[0px_0px_0px_1px_#0000000F]">
-        <div className="flex items-center justify-between">
-          <h2 className="text-3xl font-medium tracking-[-2%]">At a glance</h2>
+      <div className="flex-1 space-y-4 p-4 md:p-6 lg:p-8 mt-4 md:mt-6 lg:mt-9 pt-4 md:pt-6 rounded-xl mx-2 md:mx-4 lg:mx-6 shadow-[0px_0px_0px_1px_#0000000F]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <h2 className="text-2xl md:text-3xl font-medium tracking-[-2%]">At a glance</h2>
           <Select>
-            <SelectTrigger className="rounded-md border border-gray-300 bg-white px-2 py-1 text-sm -ml-2 w-[100px]">
+            <SelectTrigger className="rounded-md border border-gray-300 bg-white px-2 py-1 text-sm w-full sm:w-[100px]">
               <SelectValue placeholder="7 days" />
             </SelectTrigger>
             <SelectContent>
@@ -29,10 +29,10 @@ export default function DashboardPage() {
           </Select>
         </div>
         <Metrics />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-          <Card className="col-span-7 px-0">
+        <div className="grid gap-4 grid-cols-1">
+          <Card className="col-span-1 px-0">
             <CardHeader className="px-0">
-              <CardTitle className="text-3xl font-medium tracking-[-2%]">
+              <CardTitle className="text-2xl md:text-3xl font-medium tracking-[-2%]">
                 Insights
               </CardTitle>
             </CardHeader>

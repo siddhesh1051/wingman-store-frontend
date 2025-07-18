@@ -10,6 +10,11 @@ const interFont = Inter({
 export const metadata: Metadata = {
   title: "Wingman Store",
   description: "Dashboard for Wingman Store",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({

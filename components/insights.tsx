@@ -39,15 +39,15 @@ const comparisonData = [
 export default function Insights() {
   return (
     <>
-      <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-7 bg-white py-6 rounded-3xl border-[0.5px] drop-shadow-sm px-2">
-          <div className="flex items-center gap-2 mb-6 px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
+        <div className="lg:col-span-7 bg-white py-4 md:py-6 rounded-3xl border-[0.5px] drop-shadow-sm px-2">
+          <div className="flex items-center gap-2 mb-4 md:mb-6 px-4 md:px-6">
             <Image src={ChatIcon} alt="icon" width={12} height={12} />
             <p className="text-xs text-labelText uppercase tracking-wider">
               CONSULTATIONS
             </p>
           </div>
-          <div className="h-[300px]">
+          <div className="h-[250px] md:h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart
                 data={weeklyData}
@@ -133,7 +133,7 @@ export default function Insights() {
               </ComposedChart>
             </ResponsiveContainer>
           </div>
-          <div className="flex items-center gap-6 mt-4 border-t-[1px] mx-6 pt-6">
+          <div className="flex flex-wrap items-center gap-4 md:gap-6 mt-4 border-t-[1px] mx-4 md:mx-6 pt-4 md:pt-6">
             <div className="flex items-center gap-2">
               <div className="w-4 h-1 rounded-sm bg-[#94A3B8]"></div>
               <span className="text-sm text-gray-600">Incoming</span>
@@ -149,15 +149,15 @@ export default function Insights() {
           </div>
         </div>
 
-        <div className="col-span-3 bg-white py-8 rounded-3xl border-[0.5px] drop-shadow-sm">
-          <div className="flex items-center gap-2 mb-6 px-6">
+        <div className="lg:col-span-3 bg-white py-6 md:py-8 rounded-3xl border-[0.5px] drop-shadow-sm">
+          <div className="flex items-center gap-2 mb-4 md:mb-6 px-4 md:px-6">
             <Image src={BarGraphIcon} alt="icon" width={12} height={12} />
 
             <p className="text-xs text-labelText uppercase tracking-wider">
               VS PAST PERIOD
             </p>
           </div>
-          <div className="h-[300px]">
+          <div className="h-[250px] md:h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={comparisonData}
@@ -197,7 +197,7 @@ export default function Insights() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="flex items-center gap-6  border-t-[1px] mx-6 pt-6">
+          <div className="flex flex-wrap items-center gap-4 md:gap-6 border-t-[1px] mx-4 md:mx-6 pt-4 md:pt-6">
             <div className="flex items-center gap-2">
               <div className="w-4 h-1 rounded-sm bg-[#CCFBEF] "></div>
               <span className="text-sm text-gray-600">Consultations</span>

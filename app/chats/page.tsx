@@ -13,7 +13,7 @@ const ChatMessage = ({
   <div className={`flex ${isBot ? "justify-start" : "justify-end"} mb-4`}>
     <div
       className={`
-      max-w-[70%] p-3 rounded-lg
+      max-w-[85%] sm:max-w-[70%] p-3 rounded-lg text-sm
       ${isBot ? "bg-[#CCFBEF] text-[#115E56]" : "bg-[#115E56] text-white"}
     `}
     >
@@ -53,15 +53,15 @@ export default function ChatsPage() {
 
   return (
     <DashboardLayout>
-      <div className="p-8">
-        <div className="w-full min-h-[500px] max-h-[650px] h-full overflow-y-auto rounded-lg border border-gray-200 flex flex-col bg-white shadow-lg">
+      <div className="p-4 md:p-6 lg:p-8">
+        <div className="w-full min-h-[400px] sm:min-h-[500px] max-h-[500px] sm:max-h-[650px] h-full overflow-y-auto rounded-lg border border-gray-200 flex flex-col bg-white shadow-lg">
           {/* Chat Header */}
-          <div className="p-4 text-black rounded-t-lg">
-            <h2 className="text-lg font-semibold">Chat with us</h2>
+          <div className="p-3 md:p-4 text-black rounded-t-lg">
+            <h2 className="text-lg md:text-xl font-semibold">Chat with us</h2>
           </div>
 
           {/* Chat Messages */}
-          <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
+          <div className="flex-1 p-3 md:p-4 overflow-y-auto bg-gray-50">
             {messages.map((message, index) => (
               <ChatMessage
                 key={index}
@@ -72,18 +72,18 @@ export default function ChatsPage() {
           </div>
 
           {/* Input Form */}
-          <form onSubmit={handleSend} className="p-4 border-t border-gray-200">
+          <form onSubmit={handleSend} className="p-3 md:p-4 border-t border-gray-200">
             <div className="flex space-x-2">
               <input
                 type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 p-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#115E56]"
+                className="flex-1 p-2 md:p-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#115E56]"
               />
               <button
                 type="submit"
-                className="p-2 bg-[#115E56] text-white rounded-lg hover:bg-[#0a4740] focus:outline-none focus:ring-2 focus:ring-[#115E56]"
+                className="p-2 md:p-3 bg-[#115E56] text-white rounded-lg hover:bg-[#0a4740] focus:outline-none focus:ring-2 focus:ring-[#115E56]"
               >
                 <Send className="w-4 h-4" />
               </button>

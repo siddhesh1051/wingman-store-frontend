@@ -115,7 +115,7 @@ export function Orders() {
   return (
     <Card className="border-none shadow-none">
       <CardHeader className="px-0">
-        <h2 className="text-3xl font-medium tracking-[-2%]">Orders</h2>
+        <h2 className="text-2xl md:text-3xl font-medium tracking-[-2%]">Orders</h2>
       </CardHeader>
       <CardContent className="p-0">
         {products.length === 0 ? (
@@ -124,41 +124,41 @@ export function Orders() {
           </div>
         ) : (
           <div>
-            <div className="overflow-hidden rounded-lg border border-gray-200">
-              <Table>
+            <div className="overflow-x-auto rounded-lg border border-gray-200">
+              <Table className="min-w-full">
                 <TableHeader>
                   <TableRow className="bg-[#F9FAFB] py-2">
                     <TableHead
-                      className="text-xs font-medium text-muted-foreground cursor-pointer"
+                      className="text-xs font-medium text-muted-foreground cursor-pointer min-w-[200px]"
                       onClick={() => handleSort("title")}
                     >
                       Product
                       <SortIndicator columnKey="title" />
                     </TableHead>
                     <TableHead
-                      className="text-xs font-medium text-muted-foreground cursor-pointer"
+                      className="text-xs font-medium text-muted-foreground cursor-pointer min-w-[120px]"
                       onClick={() => handleSort("date")}
                     >
                       Date
                     </TableHead>
-                    <TableHead className="text-xs font-medium text-muted-foreground">
+                    <TableHead className="text-xs font-medium text-muted-foreground min-w-[100px]">
                       Time spent
                     </TableHead>
                     <TableHead
-                      className="text-xs font-medium text-muted-foreground cursor-pointer"
+                      className="text-xs font-medium text-muted-foreground cursor-pointer min-w-[120px]"
                       onClick={() => handleSort("price")}
                     >
                       Order Value
                       <SortIndicator columnKey="price" />
                     </TableHead>
                     <TableHead
-                      className="text-xs font-medium text-muted-foreground cursor-pointer"
+                      className="text-xs font-medium text-muted-foreground cursor-pointer min-w-[120px]"
                       onClick={() => handleSort("commission")}
                     >
                       Commission
                       <SortIndicator columnKey="commission" />
                     </TableHead>
-                    <TableHead className="text-right text-xs font-medium text-muted-foreground"></TableHead>
+                    <TableHead className="text-right text-xs font-medium text-muted-foreground min-w-[120px]"></TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -169,36 +169,37 @@ export function Orders() {
                           <img
                             src={product.image}
                             alt={product.title}
-                            className="h-10 w-10 rounded-full object-cover bg-muted"
+                            className="h-10 w-10 rounded-full object-cover bg-muted flex-shrink-0"
                           />
-                          <span className="font-medium truncate max-w-[200px]">
+                          <span className="font-medium truncate max-w-[150px] md:max-w-[200px]">
                             {product.title}
                           </span>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="flex flex-col">
-                          <span className="font-medium">
+                          <span className="font-medium text-sm">
                             {24 + index} Apr 2024
                           </span>
-                          <span className="text-sm text-muted-foreground">
+                          <span className="text-xs text-muted-foreground">
                             10:24 AM
                           </span>
                         </div>
                       </TableCell>
-                      <TableCell className="font-medium">2h 5m</TableCell>
-                      <TableCell className="font-medium">
+                      <TableCell className="font-medium text-sm">2h 5m</TableCell>
+                      <TableCell className="font-medium text-sm">
                         ${product.price.toFixed(2)}
                       </TableCell>
-                      <TableCell className="font-bold">
+                      <TableCell className="font-bold text-sm">
                         ${(product.price * 0.1).toFixed(2)}
                       </TableCell>
                       <TableCell className="text-right">
                         <Button
                           variant="ghost"
-                          className="h-8 px-2 text-muted-foreground hover:text-foreground"
+                          className="h-8 px-2 text-muted-foreground hover:text-foreground text-xs"
                         >
-                          View Chat
+                          <span className="hidden sm:inline">View Chat</span>
+                          <span className="sm:hidden">View</span>
                           <ArrowUpRight className="ml-1 h-4 w-4" />
                         </Button>
                       </TableCell>
@@ -207,21 +208,23 @@ export function Orders() {
                 </TableBody>
               </Table>
             </div>
-            <div className="flex justify-between items-center gap-2 mt-4">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mt-4">
               <Button
                 variant="outline"
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1}
+                className="text-sm"
               >
                 Previous
               </Button>
-              <span className="text-sm text-muted-foreground">
+              <span className="text-sm text-muted-foreground text-center">
                 Page {currentPage} of {totalPages}
               </span>
               <Button
                 variant="outline"
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
+                className="text-sm"
               >
                 Next
               </Button>
